@@ -1,3 +1,5 @@
+import os
+
 from flask import Flask, request
 
 import util
@@ -52,4 +54,5 @@ def send_message(text, phone):
     services.send_message_wsp(data)
 
 if (__name__ == '__main__'):
-    app.run()
+    # app.run()
+    app.run(debug=True, port=os.getenv('PORT', default=5000))
