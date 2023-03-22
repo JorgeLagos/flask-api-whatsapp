@@ -39,6 +39,7 @@ def received_message():
 
         message = util.get_message_user(messages)
         # send_message(message, from_number)
+        process_message(message, from_number)
 
         return 'EVENT_RECEIVED'
     except:
@@ -46,12 +47,9 @@ def received_message():
     
 def process_message(text, phone):
     text = text.lower()
-    if 'hi' in text:
-        data = util.send_message_wsp('Hello, how can i help you?', phone)
-    elif 'thank' in text: 
-        data = util.send_message_wsp('Thank you for contacting me', phone)
-    else:
-        data = util.send_message_wsp('Im sorry, i cant understand you', phone)
+    if 'hi' in text: data = util.message_type_text('Hello, how can i help you?', phone)
+    elif 'thank' in text: data = util.message_type_text('Thank you for contacting me', phone)
+    else: data = util.message_type_text('Im sorry, i cant understand you', phone)
     services.send_message_wsp(data)
 
 def send_message(text, phone):
