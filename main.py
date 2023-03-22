@@ -38,13 +38,24 @@ def received_message():
         from_number = messages.get('from')
 
         message = util.get_message_user(messages)
-        send_message(message, from_number)
+        # send_message(message, from_number)
 
         return 'EVENT_RECEIVED'
     except:
         return 'EVENT_RECEIVED'
+    
+def process_message(text, phone):
+    text = text.lower()
+    if 'hi' in text:
+        data = util.send_message_wsp('Hello, how can i help you?', phone)
+    elif 'thank' in text: 
+        data = util.send_message_wsp('Thank you for contacting me', phone)
+    else:
+        data = util.send_message_wsp('Im sorry, i cant understand you', phone)
+    services.send_message_wsp(data)
 
 def send_message(text, phone):
+    text = text.lower()
     if 'text' in text: data = util.message_type_text('Text', phone)
     if 'format' in text: data = util.message_type_text_format(phone)
     if 'image' in text: data = util.message_type_image(phone)
