@@ -1,11 +1,14 @@
 import os
 
 from flask import Flask, request
+from dotenv import load_dotenv
 
 import util
 import services
 
 app = Flask(__name__)
+
+load_dotenv()
 
 @app.route('/welcome', methods=['GET'])
 def index():
@@ -54,5 +57,4 @@ def send_message(text, phone):
     services.send_message_wsp(data)
 
 if (__name__ == '__main__'):
-    # app.run()
     app.run(debug=True, port=os.getenv('PORT', default=5000))

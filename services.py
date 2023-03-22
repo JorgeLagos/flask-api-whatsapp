@@ -1,10 +1,11 @@
 import requests
 import json
+import os
 
 def send_message_wsp(data):
     try:
-        token = 'EAACMBtknV6EBAINiUghub36TvS3Wt1HhFuZAlTTSOIZBmjzV5H8TSZByH8EzOPdNFcgfHIDlOhAdizEWUstVwnyoEcJMAbeaDhODNIQFK7F0RZBEgUvl1kALVK8n0OSYTFaJoLgNqo0blFU54OlZCHZBe2GrmcltBk56kv0LiEozKfSAjwZCHfWWrppjTHkFGVsWvly5jf5bVqkQIsGYmkUk1fED414nf4ZD'
-        api_url = 'https://graph.facebook.com/v15.0/113189058361758/messages'
+        token = os.getenv('WSP_API_TOKEN')
+        api_url = os.getenv('WSP_API_URL')
         headers = {
             'Content-Type': 'application/json',
             'Authorization': f'Bearer {token}'
