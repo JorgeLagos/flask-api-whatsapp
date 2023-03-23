@@ -76,7 +76,7 @@ def process_message(text, phone):
         data = util.message_type_buttons(phone)
         list_data.append(data)
 
-    elif 'sing up' in text:
+    elif 'sign up' in text:
         data = util.message_type_text('Enter this link to register: https://form.jotform.com/222507994363665', phone)
         list_data.append(data)
     
