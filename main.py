@@ -47,12 +47,33 @@ def received_message():
     
 def process_message(text, phone):
     text = text.lower()
-    if 'hi' in text: data = util.message_type_text('Hello, how can i help you?', phone)
-    elif 'thank' in text: data = util.message_type_text('Thank you for contacting me', phone)
-    elif 'no es lo mismo decir' in text: data = util.message_type_text('Demetrio Zacarías Saturnino Fajardo', phone)
-    elif 'que' in text: data = util.message_type_text('De meterlo, sacarlo, sacudirlo y guardarlo', phone)
+    list_data = []
+
+    if 'hi' in text: 
+        data = util.message_type_text('Hello, how can i help you?', phone)
+        data_menu = util.message_type_list(phone)
+        list_data.append(data)
+        list_data.append(data_menu)
+
+    elif 'thank' in text: 
+        data = util.message_type_text('Thank you for contacting me', phone)
+
+    elif 'agency' in text:
+        data = util.message_type_text('This is our agency', phone)
+        data_location = util.message_type_location(phone)
+        list_data.append(data)
+        list_data.append(data_location)
+    
+    elif 'contact' in text:
+        data = util.message_type_text('*Contact Center:*\n+56963230969', phone)
+        list_data.append(data)
+
+    # elif 'no es lo mismo decir' in text: data = util.message_type_text('Demetrio Zacarías Saturnino Fajardo', phone)
+    # elif 'que' in text: data = util.message_type_text('De meterlo, sacarlo, sacudirlo y guardarlo', phone)
     else: data = util.message_type_text('Im sorry, i cant understand you', phone)
-    services.send_message_wsp(data)
+
+    for item in list_data:
+        services.send_message_wsp(item)
 
 def send_message(text, phone):
     text = text.lower()
