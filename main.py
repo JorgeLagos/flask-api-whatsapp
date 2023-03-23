@@ -76,6 +76,14 @@ def process_message(text, phone):
         data = util.message_type_buttons(phone)
         list_data.append(data)
 
+    elif 'sing up' in text:
+        data = util.message_type_text('Enter this link to register: https://form.jotform.com/222507994363665', phone)
+        list_data.append(data)
+    
+    elif 'log in' in text or 'login' in text:
+        data = util.message_type_text('Enter this link to login: https://form.jotform.com/222507994363665', phone)
+        list_data.append(data)
+
     else: 
         data = util.message_type_text('Im sorry, i cant understand you', phone)
         list_data.append(data)
